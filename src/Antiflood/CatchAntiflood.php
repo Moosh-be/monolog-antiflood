@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * This class  store the antiflood info
+ */
 namespace Antiflood;
 use DateInterval;
 
