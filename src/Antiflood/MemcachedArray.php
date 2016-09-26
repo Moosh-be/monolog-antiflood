@@ -1,6 +1,6 @@
 <?php
 
-namespace Bubble;
+namespace Antiflood;
 use ArrayAccess;
 
 class MemcachedArray implements ArrayAccess

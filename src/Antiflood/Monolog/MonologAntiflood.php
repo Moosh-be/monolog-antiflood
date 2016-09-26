@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Bubble\Monolog;
-use Bubble\GeneralizeException;
+namespace Antiflood\Monolog;
+use Antiflood\GeneralizeException;
 
-class MonologBubble
+class MonologAntiflood
 {
     private static function generalizeException(\Exception $e)
     {
@@ -25,7 +25,7 @@ class MonologBubble
         return $exception;
     }
 
-    public static function monolog2bubble(array $record)
+    public static function monolog2antiflood(array $record)
     {
         unset($record['channel']);
         $details = $record;
@@ -45,8 +45,8 @@ class MonologBubble
 
     public static function fingerPrint(array $record)
     {
-        $bubble = self::monolog2bubble($record);
-        return $bubble['record'];
+        $antiflood = self::monolog2antiflood($record);
+        return $antiflood['record'];
     }
 
     public static function exceptionContext(\Exception $e)

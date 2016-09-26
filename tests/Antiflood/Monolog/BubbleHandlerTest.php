@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Bubble\Monolog;
+namespace Antiflood\Monolog;
 
 use Monolog\Handler\AbstractHandler;
 use Monolog\Handler\TestHandler;
 use Monolog\Logger;
 
-class BubbleHandlerTest extends \PHPUnit_Framework_TestCase
+class AntifloodHandlerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @return array Record
@@ -55,7 +55,7 @@ class BubbleHandlerTest extends \PHPUnit_Framework_TestCase
     public function testHandleBuffers()
     {
         $test = new TestHandler();
-        $handler = new BubbleHandler($test, new \Bubble\CatchBubble(\Bubble\CatchBubble::TIMEOUT));
+        $handler = new AntifloodHandler($test, new \Antiflood\CatchAntiflood(\Antiflood\CatchAntiflood::TIMEOUT));
         $this->assertTrue($handler instanceof AbstractHandler);
         $debug = $this->getRecord(Logger::DEBUG, 'one message');
         $handler->handle($debug);
@@ -68,7 +68,7 @@ class BubbleHandlerTest extends \PHPUnit_Framework_TestCase
     public function testHandleAnother()
     {
         $test = new TestHandler();
-        $handler = new BubbleHandler($test, new \Bubble\CatchBubble(\Bubble\CatchBubble::TIMEOUT));
+        $handler = new AntifloodHandler($test, new \Antiflood\CatchAntiflood(\Antiflood\CatchAntiflood::TIMEOUT));
         $this->assertTrue($handler instanceof AbstractHandler);
         $debug = $this->getRecord(Logger::DEBUG, 'one message');
         $handler->handle($debug);
@@ -86,6 +86,6 @@ class BubbleHandlerTest extends \PHPUnit_Framework_TestCase
             'context' => array(),
             'level' => 100,
             'level_name' => 'DEBUG',
-        ), MonologBubble::fingerPrint($this->getRecord(Logger::DEBUG, 'one message')));
+        ), MonologAntiflood::fingerPrint($this->getRecord(Logger::DEBUG, 'one message')));
     }
 }

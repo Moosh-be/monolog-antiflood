@@ -1,9 +1,9 @@
 <?php
 
-namespace Bubble;
+namespace Antiflood;
 use DateInterval;
 
-class CatchBubble
+class CatchAntiflood
 {
     private $storage;
     const TIMEOUT = "PT1H";
@@ -15,12 +15,12 @@ class CatchBubble
         $this->storage = $storage;
     }
 
-    public function bubble($data, $details = array())
+    public function antiflood($data, $details = array())
     {
-        return (bool)$this->getBubble($data, $details);
+        return (bool)$this->getAntiflood($data, $details);
     }
 
-    public function getBubble($data, $details = array())
+    public function getAntiflood($data, $details = array())
     {
         $key = md5(serialize($data));
         $fresh = !isset($this->storage[$key]);

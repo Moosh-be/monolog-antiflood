@@ -1,25 +1,29 @@
 {
-    "name": "bobagold/monolog-bubble",
+    "name": "Moosh-be/monolog-antiflood",
     "description": "Limit logging of similar records",
     "license": "MIT",
     "autoload": {
-        "psr-0": { "Bubble": "src/" }
+        "psr-0": { "Moosh-be": "src/" }
     },
     "require": {
         "monolog/monolog": "1.*"
     },
     "require-dev": {
-        "doctrine/dbal": "2.3.0",
         "phpunit/phpunit": "~4.3"
     },
     "suggest": {
-        "ext-memcache": "For using MemcacheArray as in README.md",
-        "ext-memcached": "For using MemcachedArray"
+        "ext-redis": "The php redis extension https://github.com/nicolasff/phpredis/ is required for connecting to redis server"
     },
     "authors": [
         {
+            "name": "Moosh",
+            "email": "moosh@php.net",
+            "role": "developper"
+        },
+        {
             "name": "Vladimir Goldobin",
-            "email": "bobagold@gmail.com"
+            "email": "bobagold@gmail.com",
+            "role": "developper of forked code"
         }
     ]
 }

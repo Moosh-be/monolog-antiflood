@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Bubble;
+namespace Antiflood;
 interface GeneralizeException
 {
     public function generalize($exception);

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bubble;
+namespace Antiflood;
 
 class MemcacheArrayTest extends \PHPUnit_Framework_TestCase
 {

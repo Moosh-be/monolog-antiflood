@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Bubble\Monolog;
+namespace Antiflood\Monolog;
 
 
 use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\DriverManager;
 
-class MonologBubbleTest extends \PHPUnit_Framework_TestCase
+class MonologAntifloodTest extends \PHPUnit_Framework_TestCase
 {
     public function testDoctrineException()
     {
@@ -19,8 +19,8 @@ LINE 1: SELECT * FROM auth_users WHERE ok = $1
         $first = DBALException::driverExceptionDuringQuery($ex, $query, $db->resolveParams(array(1), array()));
         $second = DBALException::driverExceptionDuringQuery($ex, $query, $db->resolveParams(array(2), array()));
 
-        $firstContext = MonologBubble::exceptionContext($first);
-        $secondContext = MonologBubble::exceptionContext($second);
+        $firstContext = MonologAntiflood::exceptionContext($first);
+        $secondContext = MonologAntiflood::exceptionContext($second);
         $this->assertNotEquals(
             $firstContext,
             $secondContext
@@ -37,8 +37,8 @@ LINE 1: SELECT * FROM auth_users WHERE ok = $1
         $first = DBALException::driverExceptionDuringQuery($ex, 'SELECT * FROM auth_users WHERE ok = ?', $db->resolveParams(array(1), array()));
         $second = DBALException::driverExceptionDuringQuery($ex, 'SELECT * FROM product WHERE id = ?', $db->resolveParams(array(2), array()));
 
-        $firstContext = MonologBubble::exceptionContext($first);
-        $secondContext = MonologBubble::exceptionContext($second);
+        $firstContext = MonologAntiflood::exceptionContext($first);
+        $secondContext = MonologAntiflood::exceptionContext($second);
         $this->assertNotEquals(
             $firstContext,
             $secondContext
@@ -58,8 +58,8 @@ LINE 1: SELECT * FROM auth_users WHERE ok = $1
             try {
                 $db->fetchAssoc('SELECT * FROM auth_users WHERE ok = ?', array(2));
             } catch (\PDOException $second) {
-                $firstContext = MonologBubble::exceptionContext($first);
-                $secondContext = MonologBubble::exceptionContext($second);
+                $firstContext = MonologAntiflood::exceptionContext($first);
+                $secondContext = MonologAntiflood::exceptionContext($second);
                 $this->assertNotEquals(
                     $firstContext,
                     $secondContext
@@ -74,7 +74,7 @@ LINE 1: SELECT * FROM auth_users WHERE ok = $1
 
     private function loggerRecord($exceptionContext)
     {
-        return MonologBubble::fingerPrint(array(
+        return MonologAntiflood::fingerPrint(array(
             'message' => 'Unhandled exception',
             'datetime' => new \DateTime(),
             'context' => array('exception' => $exceptionContext),

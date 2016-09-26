@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Bubble;
+namespace Antiflood;
 use ArrayAccess;
 use Memcache;
 
