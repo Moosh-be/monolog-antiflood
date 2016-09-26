@@ -29,7 +29,7 @@ Redis can be replaced with memcached, a stream, ...
 
 
     use Antiflood\CatchAntiflood;
-    use Antiflood\Redis;
+    use Antiflood\Redis As AntifloodRedis;
     use Antiflood\Monolog\AntifloodHandler;
 
     $log = new \Monolog\Logger(/*...*/);
@@ -39,8 +39,11 @@ Redis can be replaced with memcached, a stream, ...
     $myHandlerToProtect = new \Monolog\Handler\MyHandlerToProtect('DooDooDoo','DahDahDah');
     $myHandlerToProtect->setFormatter(/*...*/);
 
-    //$mailHandler will not pollute support mailbox with similar records more than once an hour
-    $log->pushHandler(new AntifloodHandler($myHandlerToProtect, new CatchAntiflood('PT1H', new Redis())));
+    //$myHandlerToProtect will not be flood by similar events
+    $log->pushHandler(
+        new AntifloodHandler(
+            $myHandlerToProtect,
+            new CatchAntiflood('PT1H', new AntifloodRedis())));
     $log->pushProcessor(/*...*/);
 
     \Monolog\ErrorHandler::register($log);
